@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "ViewRemoveBook";
+}
+
+<head>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" href="~/Content/style.css">
+    <title>Personal Library - Remove Book</title>
+    <style>
+        html, body {
+            height: 650px;
+            width: 99%;
+            align-content: center;
+        }
+    </style>
+</head>
+
+<form action="/RemoveBook/RemoveBook" method="POST" style="display: flex; flex-direction: column; width: 30%">
+    <label for="author">Author:</label>
+    <input type="text" id="author" name="author" required>
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" required>
+    <input type="submit" value="Remove Book">
+</form>
+
+<div style="margin-top: 20px;">
+    <a href="/Main" class="button">Return to main page</a>
+</div>
+
+<form id="logout-form" action="/Logout/Logout" method="post" style="display: none;">
+    @Html.AntiForgeryToken()
+</form>
+
+<button type="button" onclick="logout()">Logout</button>
+
+<script>
+    function logout() {
+        document.getElementById('logout-form').submit();
+    }
+</script>

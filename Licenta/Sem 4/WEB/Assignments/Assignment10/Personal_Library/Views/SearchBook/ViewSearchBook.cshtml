@@ -1,0 +1,88 @@
+﻿@{
+    ViewBag.Title = "ViewSearchBook";
+}
+
+<head>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" href="~/Content/style.css">
+    <title>Personal Library - Search Book By Genre</title>
+    <style>
+        html, body {
+            height: 650px;
+            width: 99%;
+            align-content: center;
+        }
+        html, body {
+            height: 650px;
+            width: 99%;
+            align-content: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+            table th,
+            table td {
+                padding: 8px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+
+            table th {
+                background-color: #f2f2f2;
+            }
+    </style>
+</head>
+
+<form method="get" action="/SearchBook/SearchBook">
+    <label for="genre">Genre:</label>
+    <input type="text" id="genre" name="genre" value="@Session["LastGenre"]" required>
+    <button type="submit">Search</button>
+</form>
+
+<div style="margin-top: 20px;">
+    <a href="/Main" class="button">Return to main page</a>
+</div>
+
+<form id="logout-form" action="/Logout/Logout" method="post" style="display: none;">
+    @Html.AntiForgeryToken()
+</form>
+
+<button type="button" onclick="logout()">Logout</button>
+
+<script>
+    function logout() {
+        document.getElementById('logout-form').submit();
+    }
+</script>
+
+@if (Model != null)
+{
+    if (Model.Count == 0)
+    {
+        <p>No books found for the specified genre.</p>
+    }
+    else
+    {
+        <table>
+            <tr>
+                <th>Author</th>
+                <th>Title</th>
+                <th>Number of Pages</th>
+                <th>Genre</th>
+            </tr>
+            @foreach (var book in Model)
+            {
+                <tr>
+                    <td>@book.Author</td>
+                    <td>@book.Title</td>
+                    <td>@book.NumberOfPages</td>
+                    <td>@book.Genre</td>
+                </tr>
+            }
+        </table>
+    }
+}

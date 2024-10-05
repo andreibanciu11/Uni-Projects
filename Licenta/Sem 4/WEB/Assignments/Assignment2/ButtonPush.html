@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Push Effect</title>
+	<style type="text/css">
+		/* Version 1 */
+		.btn1 {
+			background-color: #4CAF50;
+			border: none;
+			color: white;
+			padding: 15px 32px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+			cursor: pointer;
+			position: relative;
+			transition: all 0.3s ease-out;
+			transform: perspective(400px) rotateX(0deg) rotateY(0deg);
+		}
+		.btn1:hover {
+			transform: perspective(400px) rotateX(30deg) rotateY(-30deg) scale(1.1);
+		}
+	/* Version 2 */
+	.btn2 {
+		background-color: #008CBA;
+		border: none;
+		color: white;
+		padding: 15px 32px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		margin: 4px 2px;
+		cursor: pointer;
+		position: relative;
+		overflow: hidden;
+	}
+	.btn2:after {
+		content: "";
+		position: absolute;
+		top: 100%;
+		left: 50%;
+		transform: translate(-50%, -50%) rotateX(90deg);
+		width: 100%;
+		height: 100%;
+		background-color: #00688B;
+		transition: transform 0.5s;
+	}
+	.btn2:hover:after {
+		transform: translate(-50%, -150%) rotateX(0deg);
+	}
+</style>
+</head>
+<body>
+	<h1>3D Button Push Effect Examples</h1>
+<!-- Version 1 -->
+<button class="btn1">Button 1</button>
+
+<!-- Version 2 -->
+<button class="btn2">Button 2</button>
+</body>
+</html>

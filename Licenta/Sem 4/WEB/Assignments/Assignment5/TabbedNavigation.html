@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Tabbed Navigation</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .tab-content {
+            display: none;
+            padding: 10px;
+        }
+
+        .tab-navigation {
+            background-color: #f5f5f5;
+            padding: 10px;
+        }
+
+            .tab-navigation ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                display: flex;
+            }
+
+            .tab-navigation li {
+                margin-right: 10px;
+            }
+
+            .tab-navigation a {
+                display: block;
+                padding: 10px;
+                text-decoration: none;
+                color: #333;
+            }
+
+                .tab-navigation a.active {
+                    background-color: #ddd;
+                }
+
+        .images {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .images img {
+                width: 300px;
+                height: 300px;
+                margin: 10px;
+            }
+
+            .images img.imgsecond {
+                width: 400px;
+                height: 300px;
+                margin: 10px;
+            }
+
+        .text {
+            text-align: center;
+        }
+
+            .text > div:not(:first-child) {
+                margin-top: 10px;
+            }
+    </style>
+</head>
+<body>
+    <div class="tab-navigation">
+        <ul>
+            <li><a href="#tab1">Tab 1</a></li>
+            <li><a href="#tab2">Tab 2</a></li>
+            <li><a href="#tab3">Tab 3</a></li>
+            <li><a href="#tab4">Tab 4</a></li>
+            <li><a href="#tab5">Tab 5</a></li>
+        </ul>
+    </div>
+
+    <div class="tab-content" id="tab1">
+        <div class="images">
+            <img src="times-square.jpg">
+            <img src="manhattan.jpg">
+        </div>
+        <div class="text">
+            <div>New York, USA</div>
+            <div>Manhattan</div>
+            <div>Times Square</div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="tab2">
+        <div class="images">
+            <img src="tokyo-tower.jpg">
+            <img src="shibuya.jpg">
+        </div>
+        <div class="text">
+            <div>Tokyo, Japan</div>
+            <div>Tokyo Tower</div>
+            <div>Shibuya</div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="tab3">
+        <div class="images">
+            <img src="big-ben.jpg">
+            <img src="tower-bridge.jpg">
+        </div>
+        <div class="text">
+            <div>London, United Kingdom</div>
+            <div>Big Ben</div>
+            <div>Tower Bridge</div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="tab4">
+        <div class="images">
+            <img src="arc-de-triomphe.jpg">
+            <img src="eiffel-tower.jpg">
+        </div>
+        <div class="text">
+            <div>Paris, France</div>
+            <div>Arc De Triomphe</div>
+            <div>Eiffel Tower</div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="tab5">
+        <div class="images">
+            <img class="imgsecond" src="sagrada-familia.jpg">
+            <img class="imgsecond" src="barcelona.jpg">
+        </div>
+        <div class="text">
+            <div>Barcelona, Spain</div>
+            <div>Sagrada Familia</div>
+            <div>Barcelona Neighbourhood</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

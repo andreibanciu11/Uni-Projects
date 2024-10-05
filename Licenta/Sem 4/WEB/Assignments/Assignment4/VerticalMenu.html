@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vertical Menu</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400');
+
+        :root {
+            --color-primary: #395185;
+            --color-secondary: #f0e7d8;
+            --color-tertiary: #bf6d7f;
+            --color-quaternary: #e1d2c2;
+            --color-hover: #7f7f7f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .menu-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .menu {
+            width: 250px;
+            background-color: var(--color-secondary);
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+        }
+
+            .menu ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .menu li {
+                position: relative;
+            }
+
+                .menu li a {
+                    display: block;
+                    padding: 12px;
+                    color: var(--color-primary);
+                    text-decoration: none;
+                    transition: color 0.2s ease-in-out;
+                }
+
+                    .menu li a:hover {
+                        color: var(--color-hover);
+                    }
+
+                .menu li ul {
+                    position: absolute;
+                    top: 0;
+                    left: 100%;
+                    display: none;
+                    background-color: var(--color-quaternary);
+                    border-left: 2px solid var(--color-primary);
+                    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+                }
+
+                .menu li:hover > ul {
+                    display: block;
+                }
+
+                .menu li ul li a {
+                    display: block;
+                    padding: 8px;
+                    color: var(--color-primary);
+                    text-decoration: none;
+                    transition: background-color 0.2s ease-in-out;
+                }
+
+                    .menu li ul li a:hover {
+                        background-color: var(--color-hover);
+                    }
+    </style>
+</head>
+<body>
+    <div class="menu-wrapper">
+        <div class="menu">
+            <ul>
+                <li>
+                    <a href="#">Submenu 1</a>
+                    <ul>
+                        <li><a href="#">A</a></li>
+                        <li><a href="#">B</a></li>
+                        <li><a href="#">C</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Submenu 2</a>
+                    <ul>
+                        <li><a href="#">A</a></li>
+                        <li><a href="#">B</a></li>
+                        <li><a href="#">C</a></li>
+                        <li><a href="#">D</a></li>
+                        <li><a href="#">E</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Submenu 3</a>
+                    <ul>
+                        <li><a href="#">A</a></li>
+                        <li><a href="#">B</a></li>
+                        <li><a href="#">C</a></li>
+                        <li><a href="#">D</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Submenu 4</a>
+                    <ul>
+                        <li><a href="#">A</a></li>
+                        <li><a href="#">B</a></li>
+                        <li><a href="#">C</a></li>
+                        <li><a href="#">D</a></li>
+                        <li><a href="#">E</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Submenu 5</a>
+                    <ul>
+                        <li><a href="#">A</a></li>
+                        <li><a href="#">B</a></li>
+                        <li><a href="#">C</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        var submenuLists = document.querySelectorAll('.menu li ul');
+
+        submenuLists.forEach(function (submenu) {
+            var parentLi = submenu.parentNode;
+            parentLi.addEventListener('mouseover', function () {
+                submenu.style.display = 'block';
+            });
+            parentLi.addEventListener('mouseout', function () {
+                submenu.style.display = 'none';
+            });
+        });
+    </script>
+</body >
+</html >

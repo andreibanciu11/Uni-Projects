@@ -1,0 +1,77 @@
+CREATE TABLE Labels (
+	LabelID INT PRIMARY KEY,
+	LabelName VARCHAR(50),
+	Country VARCHAR(50),
+	City VARCHAR(50),
+	DateOfEstablishment DATE,
+	Genre VARCHAR(50)
+	);
+
+CREATE TABLE Artists (
+	ArtistID INT PRIMARY KEY,
+	ArtistName VARCHAR(50),
+	Country VARCHAR(50),
+	DOB DATE,
+	NumberOfStreams INT,
+	SignedLabelID INT FOREIGN KEY REFERENCES Labels(LabelID)
+	);
+
+CREATE TABLE Producers (
+	ProducerID INT PRIMARY KEY,
+	ProducerName VARCHAR(50),
+	Country VARCHAR(50),
+	DOB DATE
+	);
+
+CREATE TABLE Songs (
+	SongID INT PRIMARY KEY,
+	Title VARCHAR(50),
+	DateOfRelease DATE,
+	SignedProducerID INT FOREIGN KEY REFERENCES Producers(ProducerID)
+	);
+
+CREATE TABLE Concerts (
+	ConcertID INT PRIMARY KEY,
+	ConcertName VARCHAR(50),
+	ConcertDate DATE,
+	Country VARCHAR(50),
+	City VARCHAR(50),
+	SignedArtistID INT FOREIGN KEY REFERENCES Artists(ArtistID)
+	);
+
+CREATE TABLE Platforms (
+	PlatformID INT PRIMARY KEY,
+	PlatformName VARCHAR(50),
+	NumberOfUsers INT
+	);
+
+CREATE TABLE Radio (
+	RadioFMID INT PRIMARY KEY,
+	RadioName VARCHAR(50),
+	NumberOfUsers INT
+	);
+
+CREATE TABLE Performing (
+	ArtistID INT,
+	SongID INT,
+	Featuring INT,
+	FOREIGN KEY (ArtistID) REFERENCES Artists(ArtistID),
+	FOREIGN KEY (SongID) REFERENCES Songs(SongID),
+	PRIMARY KEY (ArtistID, SongID)
+	);
+
+CREATE TABLE PlayingPlatform (
+	PlatformID INT,
+	SongID INT,
+	FOREIGN KEY (PlatformID) REFERENCES Platforms(PlatformID),
+	FOREIGN KEY (SongID) REFERENCES Songs(SongID),
+	PRIMARY KEY (PlatformID, SongID)
+	);
+
+CREATE TABLE PlayingRadio (
+	RadioID INT,
+	SongID INT,
+	FOREIGN KEY (RadioID) REFERENCES Radio(RadioFMID),
+	FOREIGN KEY (SongID) REFERENCES Songs(SongID),
+	PRIMARY KEY (RadioID, SongID)
+	);

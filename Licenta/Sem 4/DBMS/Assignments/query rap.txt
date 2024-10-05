@@ -1,0 +1,152 @@
+CREATE TABLE Labels (
+    LabelID INT PRIMARY KEY,
+    LabelName VARCHAR(255),
+    Country VARCHAR(255),
+    City VARCHAR(255),
+    DateOfEstablishment DATE,
+    Genre VARCHAR(255)
+);
+
+-- Artists table
+CREATE TABLE Artists (
+    ArtistID INT PRIMARY KEY,
+    ArtistName VARCHAR(255),
+    Country VARCHAR(255),
+    DOB DATE,
+    NumberOfStreams INT,
+    SignedLabelID INT,
+    FOREIGN KEY (SignedLabelID) REFERENCES Labels(LabelID)
+);
+
+-- Concerts table
+CREATE TABLE Concerts (
+    ConcertID INT PRIMARY KEY,
+    ConcertName VARCHAR(255),
+    ConcertDate DATE,
+    Country VARCHAR(255),
+    City VARCHAR(255),
+    SignedArtistID INT,
+    FOREIGN KEY (SignedArtistID) REFERENCES Artists(ArtistID)
+);
+
+-- Producers table
+CREATE TABLE Producers (
+    ProducerID INT PRIMARY KEY,
+    ProducerName VARCHAR(255),
+    Country VARCHAR(255),
+    DOB DATE
+);
+
+-- Songs table
+CREATE TABLE Songs (
+    SongID INT PRIMARY KEY,
+    Title VARCHAR(255),
+    DateOfRelease DATE,
+    SignedProducerID INT,
+    FOREIGN KEY (SignedProducerID) REFERENCES Producers(ProducerID)
+);
+
+-- Performing table
+CREATE TABLE Performing (
+    ArtistID INT,
+    SongID INT,
+    Featuring INT,
+    PRIMARY KEY (ArtistID, SongID),
+    FOREIGN KEY (ArtistID) REFERENCES Artists(ArtistID),
+    FOREIGN KEY (SongID) REFERENCES Songs(SongID)
+);
+
+-- Platforms table
+CREATE TABLE Platforms (
+    PlatformID INT PRIMARY KEY,
+    PlatformName VARCHAR(255),
+    NumberOfUsers INT
+);
+
+-- PlayingPlatform table
+CREATE TABLE PlayingPlatform (
+    PlatformID INT,
+    SongID INT,
+    PRIMARY KEY (PlatformID, SongID),
+    FOREIGN KEY (PlatformID) REFERENCES Platforms(PlatformID),
+    FOREIGN KEY (SongID) REFERENCES Songs(SongID)
+);
+
+-- Radios table
+CREATE TABLE Radio (
+    RadioFMID INT PRIMARY KEY,
+    RadioName VARCHAR(255),
+    NumberOfUsers INT
+);
+
+-- PlayingRadio table
+CREATE TABLE PlayingRadio (
+    RadioID INT,
+    SongID INT,
+    PRIMARY KEY (RadioID, SongID),
+    FOREIGN KEY (RadioID) REFERENCES Radio(RadioFMID),
+    FOREIGN KEY (SongID) REFERENCES Songs(SongID)
+);
+
+
+INSERT INTO Labels (LabelID, LabelName, Country, City, DateOfEstablishment, Genre)
+VALUES (1, 'Universal Records', 'United States', 'Los Angeles', '2000-01-01', 'Hip Hop'),
+       (2, 'Def Jam Recordings', 'United States', 'New York', '1984-01-01', 'Hip Hop'),
+       (3, 'Sony Music Entertainment', 'United States', 'New York', '1929-01-01', 'Various');
+
+-- Inserting data into Artists table
+INSERT INTO Artists (ArtistID, ArtistName, Country, DOB, NumberOfStreams, SignedLabelID)
+VALUES (1, 'Eminem', 'United States', '1972-10-17', 1000000, 1),
+       (2, 'Jay-Z', 'United States', '1969-12-04', 900000, 2),
+       (3, 'Kendrick Lamar', 'United States', '1987-06-17', 800000, 2);
+
+-- Inserting data into Concerts table
+INSERT INTO Concerts (ConcertID, ConcertName, ConcertDate, Country, City, SignedArtistID)
+VALUES (1, 'Rap City Live', '2023-07-15', 'United States', 'Los Angeles', 1),
+       (2, 'The Blueprint Tour', '2023-08-20', 'United States', 'New York', 2),
+       (3, 'Good Kid, M.A.A.D City Tour', '2023-09-10', 'United States', 'Chicago', 3);
+
+-- Inserting data into Producers table
+INSERT INTO Producers (ProducerID, ProducerName, Country, DOB)
+VALUES (1, 'Dr. Dre', 'United States', '1965-02-18'),
+       (2, 'Timbaland', 'United States', '1972-03-10'),
+       (3, 'Pharrell Williams', 'United States', '1973-04-05');
+
+-- Inserting data into Songs table
+INSERT INTO Songs (SongID, Title, DateOfRelease, SignedProducerID)
+VALUES (1, 'Lose Yourself', '2002-10-28', 1),
+       (2, 'Empire State of Mind', '2009-10-20', 2),
+       (3, 'HUMBLE.', '2017-03-30', 3);
+
+-- Inserting data into Performing table
+INSERT INTO Performing (ArtistID, SongID, Featuring)
+VALUES (1, 1, 0),
+       (2, 2, 0),
+       (3, 3, 0);
+
+-- Inserting data into Platforms table
+INSERT INTO Platforms (PlatformID, PlatformName, NumberOfUsers)
+VALUES (1, 'Spotify', 200000000),
+       (2, 'Apple Music', 100000000),
+       (3, 'Tidal', 5000000);
+
+-- Inserting data into PlayingPlatform table
+INSERT INTO PlayingPlatform (PlatformID, SongID)
+VALUES (1, 1),
+       (2, 1),
+       (1, 2),
+       (3, 3);
+
+-- Inserting data into Radios table
+INSERT INTO Radio (RadioFMID, RadioName, NumberOfUsers)
+VALUES (1, 'Power 106 FM', 1000000),
+       (2, 'Hot 97 FM', 800000),
+       (3, 'Beats 1 Radio', 500000);
+
+-- Inserting data into PlayingRadio table
+INSERT INTO PlayingRadio (RadioID, SongID)
+VALUES (1, 1),
+       (2, 2),
+       (3, 3);
+
+SELECT * FROM Artists

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Gallery</title>
+	<style>
+		.thumbnail {
+			width: 100px;
+			height: 100px;
+			margin: 10px;
+			display: inline-block;
+		}
+
+		#preview {
+			width: 500px;
+			height: 500px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			display: none;
+			background-size: contain;
+			background-repeat: no-repeat;
+			z-index: 999;
+		}
+
+		#thumbnails {
+			text-align: center;
+			margin-top: 50px;
+		}
+	</style>
+</head>
+<body>
+	<div id="preview"></div><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+	<div id="thumbnails">
+		<img class="thumbnail" src="largephoto1.jpg" onmouseover="document.getElementById('preview').style.backgroundImage = 'url('" + img.src.replace('thumbnail', 'large') + "')'" onmouseout="hidePreview()" />
+		<img class="thumbnail" src="largephoto2.jpg" onmouseover="preview(this)" onmouseout="hidePreview()" />
+		<img class="thumbnail" src="largephoto3.jpg" onmouseover="preview(this)" onmouseout="hidePreview()" />
+		<img class="thumbnail" src="largephoto4.jpg" onmouseover="preview(this)" onmouseout="hidePreview()" />
+	</div>
+	<script>
+		function preview(img) {
+			var preview = document.getElementById('preview');
+			preview.style.backgroundImage = "url('" + img.src.replace('thumbnail', 'large') + "')";
+			preview.style.display = 'block';
+		}
+
+		function hidePreview() {
+			var preview = document.getElementById('preview');
+			preview.style.display = 'none';
+		}
+	</script>
+
+	
+</body>
+</html>

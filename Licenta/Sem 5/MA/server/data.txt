@@ -1,0 +1,30 @@
+[
+  {
+    "id": 2,
+    "name": "name2",
+    "description": "desc2",
+    "district": "district2",
+    "city": "city2"
+  },
+  {
+    "city": "Cluj Napoca",
+    "description": "cute",
+    "district": "Cluj",
+    "id": "3",
+    "name": "Ngo for dogs"
+  },
+  {
+    "city": "Cluj Napoca",
+    "description": "cute",
+    "district": "Cluj",
+    "id": "4",
+    "name": "Ngo for dogs"
+  },
+  {
+    "city": "ddd",
+    "description": "bbb",
+    "district": "ccc",
+    "id": "5",
+    "name": "aaa"
+  }
+]
